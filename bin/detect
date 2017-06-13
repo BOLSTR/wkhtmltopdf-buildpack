@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
+# bin/detect BUILD_DIR
 
-# This buildpack is valid only for the cedar-14 stack
-if [ "$STACK" = "cedar-14" ]; then
-  echo "wkhtmltopdf-buildpack"
-  exit 0
+BUILD_DIR=$1
+
+
+if [ "$STACK" = "cedar-14" ] || [ "$STACK" = "heroku-16" ]; then
+	echo "wkhtmltopdf"
 else
-  exit 1
+	echo "ERROR: wkhtmltopdf was tested only to work on cedar-14 and heroku-16"
+	exit 1
 fi
